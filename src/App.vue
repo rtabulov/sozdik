@@ -43,6 +43,8 @@ const tryCurrentWord = () => {
       }
     } else {
       // word is invalid
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore
       toastsRef.value?.createToast({
         label: 'Enter an existing word',
       });
