@@ -11,7 +11,7 @@ import StatsIcon from '../assets/chart--column.svg?component';
     <h1
       class="absolute inset-0 text-center uppercase font-bold text-4xl tracking-0.2em"
     >
-      Sozdik
+      sözdik
     </h1>
 
     <div
