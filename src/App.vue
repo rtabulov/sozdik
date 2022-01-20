@@ -6,7 +6,7 @@ import ToastNotifications from './components/ToastNotifications.vue';
 import { GridItem } from './types/GridItem';
 import { WORDLEN } from './utils';
 import { alpabet } from './utils/alphabet';
-import { secretWords, validWords } from './utils/words';
+import { secretWords, validWords } from './utils/words.json';
 
 const props = defineProps<{ secretWord: string }>();
 
@@ -103,7 +103,9 @@ onUnmounted(removeEventListeners);
 </script>
 
 <template>
-  <div class="bg-dark-900 text-light-900 min-h-screen">
+  <div
+    class="bg-dark-900 text-light-900 min-h-screen px-md-0 px-4 pt-md-0 pt-3"
+  >
     <div class="container mx-auto max-w-2xl">
       <div class="flex flex-col">
         <TheHeader />
