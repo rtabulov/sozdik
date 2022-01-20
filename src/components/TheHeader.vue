@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import HelpIcon from '../assets/help.svg?component';
+import GithubIcon from '../assets/logo--github.svg?component';
 import SettingsIcon from '../assets/settings.svg?component';
 import StatsIcon from '../assets/chart--column.svg?component';
 </script>
@@ -14,16 +14,21 @@ import StatsIcon from '../assets/chart--column.svg?component';
       sözdik
     </h1>
 
-    <div
-      class="relative text-dark-50 leading-none flex items-center gap-4 invisible"
-    >
-      <button>
+    <div class="relative text-gray-200 leading-none flex items-center gap-4">
+      <a
+        href="https://github.com/rtabulov/sozdik"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <GithubIcon width="24" height="24" />
+      </a>
+      <!-- <button>
         <HelpIcon width="24" height="24" />
-      </button>
+      </button> -->
     </div>
 
     <div
-      class="relative text-dark-50 leading-none flex items-center gap-4 invisible"
+      class="relative text-gray-200 leading-none flex items-center gap-4 invisible"
     >
       <button>
         <StatsIcon width="30" height="24" />
