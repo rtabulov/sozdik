@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { type GridItem } from '@/types/GridItem';
 import { ROWS, WORDLEN } from '@/utils';
-import { computed, watchEffect } from 'vue';
+import { computed } from 'vue';
 
 interface Props {
   grid: GridItem[];
@@ -17,12 +17,12 @@ const fullGrid = computed<(GridItem | undefined)[]>(() => [
 
 <template>
   <div
-    class="grid grid-cols-5 grid-rows-6 gap-1 w-sm max-w-full mx-auto mt-8 text-4xl font-bold uppercase"
+    class="grid grid-cols-5 grid-rows-6 gap-1 w-full max-w-64 lg:max-w-xs mx-auto mt-8 text-4xl font-bold uppercase"
   >
     <span
       v-for="(gridItem, idx) in fullGrid"
       :key="idx"
-      class="aspect-square border-2 flex items-center transition-colors justify-center cursor-default select-none"
+      class="border-2 transition-colors pb-[100%] relative"
       :class="{
         'border-dark-50 bg-transparent': !gridItem?.state,
         'border-dark-50 bg-dark-50': gridItem?.state === 'wrong',
@@ -30,7 +30,11 @@ const fullGrid = computed<(GridItem | undefined)[]>(() => [
         'border-green-500 bg-green-500': gridItem?.state === 'right',
       }"
     >
-      {{ gridItem?.char }}
+      <span
+        class="absolute inset-0 flex items-center justify-center cursor-default select-none"
+      >
+        {{ gridItem?.char }}
+      </span>
     </span>
   </div>
 </template>

@@ -7,6 +7,8 @@ import { GridItem } from './types/GridItem';
 import { WORDLEN } from './utils';
 import { alpabet } from './utils/alphabet';
 import { secretWords, validWords } from './utils/words.json';
+import AppKeyboard from './components/AppKeyboard.vue';
+import BackspaceIcon from './assets/backspace.svg?component';
 
 const props = defineProps<{ secretWord: string }>();
 
@@ -51,6 +53,9 @@ const tryCurrentWord = () => {
     }
   } else {
     // todo show word length warning
+    toastsRef.value?.createToast({
+      label: 'Word should be exactly 5 letters',
+    });
   }
 };
 
@@ -72,9 +77,11 @@ function makePrevTry(guess: string, answer: string): GridItem[] {
 
 const handleKeyDown = (e: KeyboardEvent) => {
   if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) return;
-
   const key = e.key.toLowerCase();
+  processKeyPress(key);
+};
 
+const processKeyPress = (key: string) => {
   if (key === 'enter') {
     tryCurrentWord();
     return;
@@ -103,13 +110,26 @@ onUnmounted(removeEventListeners);
 </script>
 
 <template>
-  <div
-    class="bg-dark-900 text-light-900 min-h-screen px-md-0 px-4 pt-md-0 pt-3"
-  >
-    <div class="container mx-auto max-w-2xl">
-      <div class="flex flex-col">
+  <div class="h-screen md:px-0 px-4 pb-3 pt-1">
+    <div class="container mx-auto max-w-2xl h-full">
+      <div class="flex flex-col justify-between h-full">
         <TheHeader />
-        <WordGrid :grid="grid" />
+        <WordGrid :grid="grid" class="flex-shrink" />
+        <AppKeyboard
+          class="mt-6"
+          @keypress="(key) => processKeyPress(key.toLowerCase())"
+        >
+          <template #key="{ key }">
+            <BackspaceIcon
+              v-if="key === 'Backspace'"
+              class="w-9 md:w-10.45 h-5"
+            />
+            <template v-else-if="key === 'Enter'">
+              <span class="text-12px md:text-sm">{{ key }}</span>
+            </template>
+            <template v-else>{{ key }}</template>
+          </template>
+        </AppKeyboard>
       </div>
     </div>
   </div>

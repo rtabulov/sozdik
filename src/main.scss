@@ -6,4 +6,9 @@ svg {
 
 html {
   font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
+  --tw-bg-opacity: 1;
+  background-color: rgba(15, 15, 15, var(--tw-bg-opacity));
+
+  --tw-text-opacity: 1;
+  color: rgba(221, 225, 227, var(--tw-text-opacity));
 }

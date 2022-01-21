@@ -32,34 +32,34 @@ defineExpose({ createToast });
 
 <template>
   <!-- container -->
-  <div class="fixed bottom-4 right-4 flex flex-col items-end z-10">
+  <TransitionGroup
+    name="fade"
+    tag="div"
+    class="fixed bottom-4 right-4 flex flex-col items-end z-10 select-none"
+  >
     <!-- Toast -->
-    <TransitionGroup name="fade" tag="div">
-      <div
-        v-for="toast in toasts"
-        :key="toast.id"
-        class="pl-5 pr-3 py-3 flex justify-between mt-3"
-        :class="{
-          'bg-dark-50 text-light-900': !toast.type || toast.type === 'normal',
-          'bg-green-600 text-light-900':
-            !toast.type || toast.type === 'success',
-          'bg-red-600 text-light-900': !toast.type || toast.type === 'danger',
-          'bg-yellow-600 text-light-900':
-            !toast.type || toast.type === 'warning',
-        }"
-      >
-        <span>{{ toast.label }}</span>
+    <div
+      v-for="toast in toasts"
+      :key="toast.id"
+      class="pl-5 pr-3 py-3 flex justify-between items-end mt-3"
+      :class="{
+        'bg-dark-50 text-light-900': !toast.type || toast.type === 'normal',
+        'bg-green-600 text-light-900': toast.type === 'success',
+        'bg-red-600 text-light-900': toast.type === 'danger',
+        'bg-yellow-600 text-light-900': toast.type === 'warning',
+      }"
+    >
+      <span>{{ toast.label }}</span>
 
-        <CloseIcon
-          role="button"
-          width="24"
-          height="24"
-          class="align-middle inline-block ml-3 cursor-pointer"
-          @click="() => removeToast(toast.id)"
-        />
-      </div>
-    </TransitionGroup>
-  </div>
+      <CloseIcon
+        role="button"
+        width="24"
+        height="24"
+        class="align-middle inline-block ml-3 cursor-pointer"
+        @click="() => removeToast(toast.id)"
+      />
+    </div>
+  </TransitionGroup>
 </template>
 
 <style scoped>
